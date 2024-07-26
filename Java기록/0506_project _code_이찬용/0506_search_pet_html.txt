@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="kor">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/css/01.css">
+</head>
+
+<body>
+  <header>Human Puppy</header>
+  <nav>
+    <div id="horizontal-underline"></div>
+    <a href="#">소개</a>
+    <a href="#">애견인 attitude</a>
+    <a href="#">반려견보기</a>
+    <a href="#">입양신청</a>
+    <a href="#">관심반려견</a>
+    <a href="#">반려견검색</a>
+  </nav>
+  <main>
+    <div class="col"> 
+      <form id="search-form" action="#" method="get">
+        <div id="search">
+          <input type="search" id="search-input" name="usersearch" placeholder="반려견을 검색하세요">
+          <button type="submit" onclick="search()">검색</button>
+        </div>
+      </form>
+    </div>
+  </main>
+  <script src="/css/js/01.js"></script>

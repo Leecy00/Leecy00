@@ -1,0 +1,27 @@
+let horizontalunderline = document.getElementById("horizontal-underline");
+let horizontalMenus = document.querySelectorAll("nav a");
+
+horizontalMenus.forEach(menu=>menu.addEventListener("click",(e)=>horizontalIndictor(e))
+);
+
+function horizontalIndictor(e) {
+    horizontalunderline.style.left = e.currentTarget.offsetLeft + "px";
+    horizontalunderline.style.width = e.currentTarget.offsetWidth + "px";
+    horizontalunderline.style.top =
+    e.currentTarget.offsetTop + e.currentTarget.offsetHeight + "px";
+}
+
+function deleteSelectedItems() {
+    // 모든 삭제 체크박스 요소 선택
+    var checkboxes = document.querySelectorAll('.delete-checkbox');
+
+    // 선택된 체크박스 요소 반복
+    checkboxes.forEach(function(checkbox) {
+      // 체크된 체크박스 요소인 경우
+      if (checkbox.checked) {
+        // 부모인 <div class="card"> 요소를 찾아 삭제
+        checkbox.closest('.card').parentNode.removeChild(checkbox.closest('.card'));
+      }
+    });
+  }
+ 

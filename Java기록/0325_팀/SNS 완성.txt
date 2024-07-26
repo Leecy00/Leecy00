@@ -1,0 +1,275 @@
+package main;
+
+public class Pstart {
+
+	public static void main(String[] args) {
+		Login l = new Login();
+		String id = l.idMenu();
+		TripSnsEdit t = new TripSnsEdit();
+		t.menu(id);
+	}
+}
+
+//////////////////////////
+
+package main;
+
+public class TripInfo {
+	String uploadDate = null;
+	String palce = null;
+	String title = null;
+	String preview = null;
+	String user = null;
+}
+
+/////////////////////////
+package main;
+
+import java.util.Scanner;
+
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane.TitlePaneLayout;
+
+public class TripSnsEdit {
+	Scanner in = new Scanner(System.in);
+	TripInfo[] snsPost = new TripInfo[5];
+
+	public void menu(String id) {
+		while (true) {
+			System.out.println("글 작성 : 1");
+			System.out.println("글 수정 : 2");
+			System.out.println("글 삭제 : 3");
+			System.out.println("글 검색 : 4");
+			System.out.println("전체보기 : 5");
+			System.out.println("종료 : 다른숫자");
+			int userInt = in.nextInt();
+			if (userInt == 1) {
+				posting(id);
+			} else if (userInt == 2) {
+				edit(id);
+
+			} else if (userInt == 3) {
+				delete(id);
+
+			} else if (userInt == 4) {
+				search(id);
+
+			} else if (userInt == 5) {
+				PrintAll();
+
+			} else {
+				break;
+			}
+		}
+	}
+
+	private boolean dayLimit(String id) {//게시글 하루 3회 제한 
+		int dup = 0;
+		for (int i = 0; i < snsPost.length; i++) {
+			for (int j = 0; j < snsPost.length; j++) {
+				if (snsPost[j] != null && snsPost[i] != null) {
+					if (snsPost[j].uploadDate != null && snsPost[i].uploadDate.equals(snsPost[j].uploadDate)) {
+						dup++;
+						if (dup >= 3) {
+							return false;
+						}
+					}
+				}
+			}
+		}
+		return true;
+	}
+
+	private String langFilter() {
+		String[] lang = { "십장생", "일지매" };
+		String newTitle = null;
+		for (int k = 0; k == 0; k++) {// 욕설일 경우 title 재입력&필터링 하기위해 반복문을 사용
+			Scanner in = new Scanner(System.in);
+			System.out.println("제목을 입력하세요");
+			newTitle = in.nextLine();
+			for (int i = 0; i < lang.length; i++) {
+				if (newTitle.contains(lang[i])) {
+					System.out.println("!욕설은 포함될 수 없습니다! 다시 입력해주세요");
+					k--;
+				} else {
+				}
+			}
+		}
+		return newTitle;
+	}
+
+	private void PrintAll() {
+		for (int i = 0; i < snsPost.length; i++) {
+			if (snsPost[i] != null) {
+				snsPrint(i);
+			}
+		}
+	}
+
+	private void snsPrint(int i) {
+		System.out.println("------------------------");
+		System.out.println("등록날짜 : " + snsPost[i].uploadDate);
+		System.out.println("작성자 : " + snsPost[i].user);
+		System.out.println("장소 : " + snsPost[i].palce);
+		System.out.println("제목 : " + snsPost[i].title);
+		System.out.println("소개 : " + snsPost[i].preview);
+		System.out.println("------------------------");
+	}
+
+	private int searchPlace(String user) {
+		Scanner in = new Scanner(System.in);
+		System.out.println("게시물의 장소를 입력해주세요");
+		String userPlace = in.nextLine();
+		for (int i = 0; i < snsPost.length; i++) {
+			if (snsPost[i] != null) {// 주소가 null값은 넘어간다.
+				if (user == null) {
+					if (snsPost[i].palce.contains(userPlace)) {
+						snsPrint(i);
+					}
+				} else {
+					if (snsPost[i].palce.contains(userPlace) && snsPost[i].user.equals(user)) {
+						snsPrint(i);
+						return i;
+					} else {
+						System.out.println("일치하는 항목이 없습니다.");
+					}
+				}
+			}
+		}
+		return -100;
+	}
+
+	private int snsUserPost(String id) {
+		for (int i = 0; i < snsPost.length; i++) {
+			if (snsPost[i] != null) {// 주소가 null값은 넘어간다.
+				if (snsPost[i].user.equals(id)) {
+					snsPrint(i);
+				}
+			}
+		}
+		return searchPlace(id);
+	}
+
+	private void search(String id) {
+		searchPlace(null);
+	}
+
+	private void delete(String id) {
+		int temp = snsUserPost(id);
+		if (temp >= 0) {
+			snsPost[temp] = null;// 주소를 날려버려서 삭제함
+		}
+	}
+
+	private void edit(String id) {
+		Scanner in = new Scanner(System.in);
+		int temp = snsUserPost(id);
+		if (temp >= 0) {
+			snsPost[temp].title = langFilter();
+			System.out.println("새로운 소개를 입력하세요");
+			String preview = in.nextLine();
+			snsPost[temp].preview = preview;
+
+		}
+	}
+
+	private void posting(String id) {
+		Scanner in = new Scanner(System.in);
+		TripInfo t = new TripInfo();
+		String uploadDate = null;
+		while (true) {
+			System.out.println("등록날짜를 입력하세요 ex)20190325");
+			uploadDate = in.nextLine();
+			if (uploadDate.length() != 8) {
+				System.out.println("날짜의 길이가 잘못되었습니다.");
+			} else {
+				break;
+			}
+		}
+		System.out.println("장소를 입력하세요");
+		String place = in.nextLine();
+		String title = langFilter();
+		System.out.println("소개를 입력하세요");
+		String preview = in.nextLine();
+		System.out.println("작성자 : " + id);
+		if (dayLimit(id) == false) {
+			System.out.println("하루 제한 글쓰기 3회를 넘어섬.");
+			return;
+		}
+
+		for (int i = 0; i < snsPost.length; i++) {
+			if (snsPost[i] == null) {
+				snsPost[i] = t;
+				t.uploadDate = uploadDate;
+				t.palce = place;
+				t.title = title;
+				t.preview = preview;
+				t.user = id;
+				break;
+			}
+		}
+
+	}
+
+}
+
+//////////////////////////
+
+package main;
+
+public class Member {
+	String id = null;
+	String name = null;
+	String pw = null;
+}
+
+
+///////////////////////////
+
+package main;
+
+import java.util.Scanner;
+
+public class Login {
+	Scanner in = new Scanner(System.in);
+	public static Member[] user = new Member[5];
+
+	public String idMenu() {
+		while (true) {
+			System.out.println("로그인 : 1");
+			System.out.println("회원가입 : 2");
+			int userInt = in.nextInt();
+			in.nextLine();
+			if(userInt==1) {
+				System.out.println("회원 아이디를 입력하세요");
+				String userId = in.nextLine();
+				System.out.println("비밀번호를 입력하세요");
+				String userPw = in.nextLine();
+				for (int i = 0; i < user.length; i++) {
+					if(userId==user[i].id && userPw == user[i].pw) {
+						return userId;
+					}
+				}
+				
+			}else if(userInt==2) {
+				System.out.println("신규 회원 아이디를 입력하세요");
+				String userId = in.nextLine();
+				System.out.println("비밀번호를 입력하세요");
+				String userPw = in.nextLine();
+				System.out.println("이름을 입력하세요");
+				String userName = in.nextLine();
+				for (int i = 0; i < user.length; i++) {
+					if (user[i] == null) {
+						Member m = new Member();
+						user[i] = m;
+						user[i].id = userId;
+						user[i].pw = userPw;
+						user[i].name = userName;
+						return userId;
+					}
+				}
+			}
+			
+		}
+	}
+}
+

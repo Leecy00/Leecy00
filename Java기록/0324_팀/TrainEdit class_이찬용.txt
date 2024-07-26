@@ -1,0 +1,95 @@
+package j001;
+
+import java.util.Scanner;
+
+public class TrainEdit {
+	
+	Scanner in = new Scanner (System.in);
+	TrainInfo [] tInfo = new TrainInfo [10]; 
+	
+	public void saveWord(int i, String trainName, String trainType, int trainNum, int trainArr, int realArr) {
+		TrainInfo t = new TrainInfo ();
+		t.trainName=trainName;
+		t.trainType=trainType;
+		t.trainNum=trainNum;
+		t.trainArr=trainArr;
+		t.realArr=realArr;
+		tInfo[i]=t;
+	}
+	
+	public void listAll() {
+		for(int i=0; i < tInfo.length; i++) {
+			if(tInfo[i]!=null) {
+				tInfo[i].prt();
+			}
+		}
+	}
+	
+	public void insert() {
+		System.out.println("열차이름을 입력하세요");
+		String trainName = in.nextLine();
+		System.out.println("열차종류를 입력하세요");
+		String trainType = in.nextLine();
+		System.out.println("열차번호를 입력하세요");
+		int trainNum = in.nextInt(); in.nextLine();
+		System.out.println("도착시간을 입력하세요");
+		int trainArr = in.nextInt(); in.nextLine();
+		System.out.println("실제도착시간을 입력하세요");
+		int realArr = in.nextInt(); in.nextLine();
+		for(int i=0; i < tInfo.length; i++) {
+			if(tInfo[i]==null) {
+				saveWord(i, trainName, trainType, trainNum, trainArr, realArr);
+				break;
+			}
+		}
+	}
+	
+	public void search() {
+		System.out.println("조회할 시간을 입력하세요");
+		int userArr = in.nextInt(); in.nextLine();
+		for(int i=0; i<tInfo.length; i++) {
+			if(userArr<tInfo[i].trainArr && tInfo[i] != null) {
+				tInfo[i].prt();
+			}
+			
+		}
+	}
+	
+	public void mod() {
+		
+	}
+	
+	public void delete() {
+		
+	}
+	
+	public void trainList() {
+		System.out.println("-------------------------------------------전광판-------------------------------------------");
+		listAll();
+		System.out.println("------------------------------------------------------------------------------------------");
+		
+	}
+	public void menu() {
+		while(true) {
+		System.out.println("1.열차등록 2.열차검색 3.열차수정 4.열차삭제 5.전광판 6.전체보기");
+		int meneNum = in.nextInt(); in.nextLine();
+			if (meneNum == 1) {
+				insert();
+			}else if(meneNum == 2) {
+				search();
+			}else if(meneNum == 3) {
+				mod();
+			}else if(meneNum == 4) {
+				delete(); 
+			}else if(meneNum == 5) {
+				trainList();
+			}else if(meneNum == 6) {
+				listAll();
+			}else if (meneNum < 1 || meneNum > 6) {
+				System.out.println("번호를 재입력하세요");
+			}else {
+				break;
+			}
+		}  // while문 종료
+	} // menu method 기능 
+}

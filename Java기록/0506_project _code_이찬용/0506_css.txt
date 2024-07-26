@@ -1,0 +1,126 @@
+nav a {
+    text-decoration: none;
+    color: black;
+    margin: 2em;
+}
+
+nav {
+    display: flex;
+    justify-content: center;       
+}
+
+section {
+    padding: 20px;
+  }
+
+  section h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  section p {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+
+#horizontal-underline {
+    position: absolute;
+    width: 0;
+    background-color: pink;
+    top: 0;
+    left: 0;
+    height: 4px;
+    transition: 0.3s;
+}
+
+header{
+    display: flex;
+    justify-content: center;    
+}
+
+header{
+    font-size: 50px;
+    font-family:'Courier New', Courier, monospace;
+}
+.contents{
+ /* border: 2px dotted black;  */
+    display: flex;
+    justify-content: left;
+    margin-left: 85px;
+    margin-top: 70px;
+}
+#pug{
+    width: 30%;    
+    position: absolute;
+    bottom: 8px;
+    right: 10px;
+    animation: slide 3s;
+}
+
+@keyframes slide{
+    from{
+        right: -600px;
+    }
+    to{
+        right: 10px;
+    }
+}
+#wrapper{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 1em;
+}
+#dog1{ 
+    width: 100%;
+}
+figcaption{    
+    background-color: #d1d1d1;
+    padding: 1px;
+}
+.line{
+    text-align: left;
+    border-bottom: 1px solid black;
+}
+
+#pet{
+    display: flex;
+    justify-content: center;    
+    padding-top: 15px;             
+}
+#wrapper1{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 1em;
+}
+
+.col {
+    flex: 1;
+    padding: 20px;
+}
+
+#search-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#search {
+    margin-bottom: 20px;
+}
+
+#search input[type="search"] {
+    width: 200px;
+    padding: 8px;
+    margin-right: 10px;
+}
+
+#search button {
+    padding: 8px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}

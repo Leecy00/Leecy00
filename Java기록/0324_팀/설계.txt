@@ -1,0 +1,52 @@
+PJ
+TrainList
+
+pk
+main
+
+
+
+[클래스 (기능 나누기)]
+프로그램시작(Pstart) : 프로그램 시작 기능
+
+기차정보 저장(TrainInfo) : 기차 정보 저장용 설계
+
+기차 정보 편집 기능(TrainEdit): 수정,검색,삭제,전광판 출력
+
+[멤버변수]
+
+(Pstart) class:
+
+(TrainInfo) class:
+기차번호 변수: int trainNum
+기차종류 변수: String trainClass
+기차 도착 시간 변수:int trainArr
+기차 지연 시간 변수:int trainlate
+
+(TrainEdit) class:
+
+
+[메서드]
+(Pstart) class:
+필요없을듯
+
+(TrainInfo) class:
+필요없을듯 나중에 수정
+
+(TrainEdit) class:
+
+입력 메서드
+:insert
+
+수정 메서드
+:mod
+
+검색 메서드
+:search
+
+삭제 메서드
+:delete
+
+전광판 출력 메서드
+:TrainList
+

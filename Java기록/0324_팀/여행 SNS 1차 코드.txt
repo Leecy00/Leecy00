@@ -1,0 +1,160 @@
+package main;
+
+public class Pstart {
+
+	public static void main(String[] args) {
+		TripSnsEdit t = new TripSnsEdit();
+		t.menu();
+	}
+
+}
+
+/////////////////////////
+
+package main;
+
+public class TripInfo {
+	int uploadDate = 0;
+	String palce = null;
+	String title = null;
+	String preview = null;
+	String user = null;
+}
+
+///////////////////////////
+
+package main;
+
+import java.util.Scanner;
+
+public class TripSnsEdit {
+	Scanner in = new Scanner(System.in);
+	TripInfo[] snsPost = new TripInfo[5];
+
+	public void menu() {
+		while (true) {
+			System.out.println("글 작성 : 1");
+			System.out.println("글 수정 : 2");
+			System.out.println("글 삭제 : 3");
+			System.out.println("글 검색 : 4");
+			System.out.println("종료 : 다른숫자");
+			int userInt = in.nextInt();
+			if (userInt == 1) {
+				posting();
+			} else if (userInt == 2) {
+				edit();
+
+			} else if (userInt == 3) {
+				delete();
+
+			} else if (userInt == 4) {
+				search();
+				
+			} else {
+				break;
+			}
+		}
+	}
+
+	private void snsPrint(int i) {
+		System.out.println("------------------------");
+		System.out.println("등록날짜 : " + snsPost[i].uploadDate);
+		System.out.println("작성자 : " + snsPost[i].user);
+		System.out.println("장소 : " + snsPost[i].palce);
+		System.out.println("제목 : " + snsPost[i].title);
+		System.out.println("소개 : " + snsPost[i].preview);
+		System.out.println("------------------------");
+
+	}
+
+	private int searchPlace(String user) {
+		Scanner in = new Scanner(System.in);
+		System.out.println("게시물의 장소를 입력해주세요");
+		String userPlace = in.nextLine();
+		for (int i = 0; i < snsPost.length; i++) {
+			if (snsPost[i] != null) {// 주소가 null값은 넘어간다.
+				if (user == null) {
+					if (snsPost[i].palce.equals(userPlace)) {
+						snsPrint(i);
+					}
+				} else {
+					if (snsPost[i].palce.equals(userPlace) && snsPost[i].user.equals(user)) {
+						snsPrint(i);
+						return i;
+					} else {
+						System.out.println("일치하는 제목이 없습니다.");
+					}
+				}
+			}
+		}
+		return -1;
+	}
+
+	private int snsUserPost() {
+		Scanner in = new Scanner(System.in);
+		System.out.println("작성자 이름을 입력해주세요");
+		String userLine = in.nextLine();
+		for (int i = 0; i < snsPost.length; i++) {
+			if (snsPost[i] != null) {// 주소가 null값은 넘어간다.
+				if (snsPost[i].user.equals(userLine)) {
+					snsPrint(i);
+				}
+			}
+		}
+		return searchPlace(userLine);
+	}
+
+	private void search() {
+		searchPlace(null);
+	}
+
+	private void delete() {
+		int temp = snsUserPost();
+		if (temp >= 0) {
+			snsPost[temp] = null;// 주소를 날려버려서 삭제함
+		}
+	}
+
+	private void edit() {
+		Scanner in = new Scanner(System.in);
+		int temp = snsUserPost();
+		if (temp >= 0) {
+			System.out.println("새로운 제목을 입력하세요");
+			String title = in.nextLine();
+			snsPost[temp].title = title;
+			System.out.println("새로운 소개를 입력하세요");
+			String preview = in.nextLine();
+			snsPost[temp].preview = preview;
+
+		}
+	}
+
+	private void posting() {
+		TripInfo t = new TripInfo();
+		System.out.println("등록날짜를 입력하세요");
+		int uploadDate = in.nextInt();
+		in.nextLine();
+		System.out.println("장소를 입력하세요");
+		String place = in.nextLine();
+		System.out.println("제목을 입력하세요");
+		String title = in.nextLine();
+		System.out.println("소개를 입력하세요");
+		String preview = in.nextLine();
+		System.out.println("작성자를 입력하세요");
+		String user = in.nextLine();
+
+		for (int i = 0; i < snsPost.length; i++) {
+			if (snsPost[i] == null) {
+				snsPost[i] = t;
+				t.uploadDate = uploadDate;
+				t.palce = place;
+				t.title = title;
+				t.preview = preview;
+				t.user = user;
+				break;
+			}
+		}
+
+	}
+
+}

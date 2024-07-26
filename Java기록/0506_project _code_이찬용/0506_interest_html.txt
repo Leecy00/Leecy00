@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="kor">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>  
+  <link rel="stylesheet" href="/css/01.css">
+</head>
+<body>
+<div class="h1"><header>Human Puppy</header></div>
+<nav>
+    <div id="horizontal-underline"></div>
+    <a href="#">소개</a>
+    <a href="#">애견인 attitude</a>
+    <a href="#">반려견보기</a>
+    <a href="#">입양신청</a>
+    <a href="#">관심반려견</a>
+    <a href="#">반려견검색</a>
+  </nav>
+  <div id="wrapper">
+    <div class="card">        
+        <figure><img id="dog1" src="/image/멍멍이2.jpg">
+            <figcaption>이름: 장군이<br>
+                        성별: 남<br>
+                        나이: 1살<br>
+                        <label><input type="checkbox" class="delete-checkbox" value="pet_1"/>관심반려견 삭제</label> 
+            </figcaption>
+        </figure>
+    </div>
+    <div class="card">        
+        <figure><img id="dog1" src="/image/멍멍이5.jpg">
+            <figcaption>이름: 백군이<br>
+                        성별: 남<br>
+                        나이: 1살<br>
+                        <label><input type="checkbox" class="delete-checkbox" value="pet_2"/>관심반려견 삭제</label> 
+            </figcaption>
+        </figure>
+    </div>
+    <div class="card">        
+        <figure><img id="dog1" src="/image/pug3.jpg">
+            <figcaption>이름: 버터컵<br>
+                        성별: 여<br>
+                        나이: 1살<br>
+                        <label><input type="checkbox" class="delete-checkbox" value="pet_3"/>관심반려견 삭제</label> 
+
+            </figcaption>
+        </figure>
+    </div>
+    <div class="card">        
+        <figure><img id="dog1" src="/image/제목 없음.png">
+            <figcaption>이름: 월드컵<br>
+                        성별: 남<br>
+                        나이: 1살<br>
+                        <label><input type="checkbox" class="delete-checkbox" value="pet_4"/>관심반려견 삭제</label> 
+            </figcaption>
+        </figure>
+    </div>
+  </div>
+  <div id="wrapper">
+    <div class="card">        
+        <figure><img id="dog1" src="image/멍멍이4.jpg" alt="강아지">
+            <figcaption>이름: 벨지엄<br>
+                        성별: 여<br>
+                        나이: 2살<br>
+                        <label><input type="checkbox" class="delete-checkbox" value="pet_5"/>관심반려견 삭제</label> 
+            </figcaption>
+        </figure>
+    </div>
+    <div class="card">        
+        <figure><img id="dog1" src="/image/멍멍이3.jpg" alt="강아지">
+            <figcaption>이름: 쇼콜라<br>
+                        성별: 남<br>
+                        나이: 1살<br>
+                        <label><input type="checkbox" class="delete-checkbox" value="pet_6"/>관심반려견 삭제</label> 
+            </figcaption>
+        </figure>
+    </div>
+    <div class="card">        
+        <figure><img id="dog1" src="/image/프렌치불독.jpg" alt="강아지">
+            <figcaption>이름: 모카<br>
+                        성별: 여<br>
+                        나이: 1살<br>
+                        <label><input type="checkbox" class="delete-checkbox" value="pet_7"/>관심반려견 삭제</label> 
+            </figcaption>
+        </figure>
+    </div>
+    <div class="card">        
+        <figure><img id="dog1" src="/image/cute-little-siberian-husky-puppy-sitting-isolated-white.png" alt="강아지">
+            <figcaption>이름: 레쓰비<br>
+                        성별: 남<br>
+                        나이: 3살<br>
+                        <label><input type="checkbox" class="delete-checkbox" value="pet_8"/>관심반려견 삭제</label> 
+            </figcaption>
+        </figure>
+    </div>
+  </div>
+  <div id="wrapper">
+    <div class="card">        
+        <figure><img id="dog1" src="/image/차우차우.png" alt="강아지">
+            <figcaption>이름: 사자<br>
+                        성별: 남<br>
+                        나이: 1살<br>
+                        <label><input type="checkbox" class="delete-checkbox" value="pet_9"/>관심반려견 삭제</label>                         
+            </figcaption>
+        </figure>
+    </div>
+    <div class="card">        
+        <figure><img id="dog1" src="/image/멍멍이1.jpg" alt="강아지">
+            <figcaption>이름: 건강이<br>
+                        성별: 여<br>
+                        나이: 2살<br>
+                        <label><input type="checkbox" class="delete-checkbox" value="pet_10"/>관심반려견 삭제</label> 
+            </figcaption>
+        </figure>
+    </div>
+    <div class="card">        
+        <figure><img id="dog1" src="/image/view-funny-animal.png" alt="강아지">
+            <figcaption>이름: 한글이<br>
+                        성별: 남<br>
+                        나이: 1살<br>
+                        <label><input type="checkbox" class="delete-checkbox" value="pet_11"/>관심반려견 삭제</label> 
+            </figcaption>
+        </figure>
+    </div>
+    <div class="card">        
+        <figure><img id="dog1" src="/image/멍멍이6.jpg" alt="강아지">
+            <figcaption>이름: 맘보<br>
+                        성별: 여<br>
+                        나이: 2살<br>
+                        <label><input type="checkbox" class="delete-checkbox" value="pet_12"/>관심반려견 삭제</label> 
+            </figcaption>
+        </figure>
+    </div>
+  </div>
+  <button class="delete-btn" onclick="deleteSelectedItems()">선택된 반려견 삭제</button>  
+  <script src="/css/js/01.js"></script> 
+</body>
+
+</html>

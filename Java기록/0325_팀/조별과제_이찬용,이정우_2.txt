@@ -1,0 +1,237 @@
+다음 프로그램을 개발하시오
+
+1. 상품소개 게시판
+
+Ver 1.0
+상품의 소개글만 작성한다.
+
+Ver2.0
+상품명과 소개글을 작성한다. 
+관심상품 장바구니에 담기.
+
+Ver3.0
+회원가입과 로그인 기능
+회원가입 기능 추가
+로그인 기능추가
+로그인 유무에 따라 6번 기능에서 마스킹처리, 원글모두 보여지기기능이 달라진다. 
+
+
+상품명과 소개글 배열 선언
+
+String 배열에 상품명 저장
+String 배열에 소개글이 저장된다.
+
+[샌드위치,김밥,......]
+[샌드위치에대한리뷰,김밥에대한리뷰,..]
+
+
+공통 기능.
+1. 글쓰기 //클래스
+2. 글삭제 
+3. 글수정 
+4. 검색.. 검색어가 소개글에 포함되면 검색이 된다. //메서드 만들기 public search
+5. 글쓰기와 수정에서. 특수문자( !@#$%^&* )를 사용할 수 없다. //메서드 만들기
+6. 전체보기 기능
+   보안을 위해서 5글자 위는 ***(별표3개)로 마스킹처리한다. //메서드 만들기
+for문으로 charAt 5번 반복한뒤 ***붙이기
+
+
+요구사항 정리
+
+
+기술 정리
+클래스,메서드 정리
+
+/////////////////////////////////class Pstart : 프로그램 시작과 종료를 위한 class
+
+package main;
+
+import java.util.Scanner;
+
+public class Pstart {
+
+	public static void main(String[] args) {
+		for (int i = 0; i == 0; i++) {
+			System.out.println("상품명,소개글 추가,수정 : 1 소개글 검색 : 2 , 전체보기 : 3");
+			Scanner in = new Scanner(System.in);
+			int userInt = in.nextInt();
+			in.nextLine();
+			if (userInt == 1) {
+				new Intro();
+			} else if (userInt == 2) {
+				new Search();
+			} else if (userInt == 3) {
+				new ViewAll();
+			}
+			System.out.println("계속하시겠습니까? 계속하려면 1을 입력하세요");
+					userInt = in.nextInt();
+					in.nextLine();
+					if(userInt == 1) {
+						i--;
+					}else {
+						break;
+					}
+		}
+		System.out.println("종료.");
+	}
+}
+
+
+
+
+////////////////////////////class Intro : 글쓰기,글 삭제,글 수정 class
+package main;
+
+import java.util.Scanner;
+
+public class Intro {//상품명과 소개글 편집기능
+	public static String[] productName = new String[10];
+	public static String[] productIntro = new String[10];
+	String userIntro = "";
+	Intro() {
+		int productCode = 0; //상품명을 불러올 변수
+		for (int r = 0; r <= 0; r++) {		
+			System.out.println("상품명 입력 : 0 , 글쓰기 : 1 , 글삭제 : 2 , 글수정 : 3 ,상품명과 소개글 출력 : 4 를 입력하세요");
+			Scanner in = new Scanner(System.in);
+			int userInt = in.nextInt();
+			in.nextLine();
+			if(userInt == 0) {
+				System.out.println("상품명을 입력하세요");
+				String userString = in.nextLine();
+				productName[productCode] = userString;
+				productCode++;
+			}else if(userInt==1) {
+				System.out.println("소개글을 작성할 상품번호를 입력하세요");
+				for(int i = 0; i<productName.length;i++) {
+					System.out.println(productName[i]+"상품번호 : " +i);
+				}
+				userInt = in.nextInt();
+				System.out.println("글을 쓰고 엔터를 눌러주세요");
+				Scanner introNew= new Scanner(System.in);
+				String userIntro = introNew.nextLine();
+				if(Symbols().equals("ture")) {
+					userIntro=null;
+				}
+				productIntro[userInt] = userIntro;
+			}else if(userInt==2) {
+				System.out.println("소개글을 삭제할 상품번호를 입력하세요");
+				for(int i = 0; i<productName.length;i++) {
+					System.out.println(productName[i]+"상품번호 : " +i);
+				}
+				userInt = in.nextInt();
+				productIntro[userInt] = null;
+				System.out.println("삭제되었습니다.");
+			}else if(userInt==3) {
+				System.out.println("수정할 소개글의 상품번호를 입력하세요");
+				for(int i = 0; i<productName.length;i++) {
+					System.out.println(productName[i]+"상품번호 : " +i);
+				}
+				userInt = in.nextInt();
+				System.out.println("소개글을 적어주세요");
+				Scanner introEdit= new Scanner(System.in);
+				String userIntro = introEdit.nextLine();
+				if(Symbols().equals("ture")) {
+					userIntro=null;
+				}
+				productIntro[userInt] = userIntro;
+			}else if(userInt==4) {
+				System.out.println("소개글을 출력할 상품번호 선택");
+				for(int i = 0; i<productName.length;i++) {
+					System.out.println(productName[i]+"상품번호 : " +i);
+				}
+				userInt = in.nextInt();
+				System.out.println(productName[userInt]+"  :  "+productIntro[userInt]);
+			}else {
+				System.out.println("잘못된 숫자를 입력했습니다.");
+			}
+			System.out.println("소개글 수정을 계속하시겠습니까? 계속하려면 1을 입력하세요");
+			userInt = in.nextInt();
+			in.nextLine();
+			if(userInt == 1) {
+				r--;
+			}else {
+				break;
+			}
+		}
+	}
+	public String Symbols() {
+		if(userIntro.contains("!")) {
+			System.out.println("특수문자가 포함되어있습니다. 다시입력하세요");
+			return "ture";
+		}else if(userIntro.contains("@")) {
+			System.out.println("특수문자가 포함되어있습니다. 다시입력하세요");
+			return "ture";
+		}else if(userIntro.contains("#")) {
+			System.out.println("특수문자가 포함되어있습니다. 다시입력하세요");
+			return "ture";
+		}else if(userIntro.contains("$")) {
+			System.out.println("특수문자가 포함되어있습니다. 다시입력하세요");
+			return "ture";
+		}else if(userIntro.contains("%")) {
+			System.out.println("특수문자가 포함되어있습니다. 다시입력하세요");
+			return "ture";
+		}else if(userIntro.contains("^")) {
+			System.out.println("특수문자가 포함되어있습니다. 다시입력하세요");
+			return "ture";
+		}else if(userIntro.contains("&")) {
+			System.out.println("특수문자가 포함되어있습니다. 다시입력하세요");
+			return "ture";
+		}else if(userIntro.contains("*")) {
+			System.out.println("특수문자가 포함되어있습니다. 다시입력하세요");
+			return "ture";
+		}
+		return "false";
+	}
+}
+
+////////////////////////////class Search : 검색을 위한 class
+package main;
+
+import java.util.Scanner;
+
+public class Search {
+	String[] productName = Intro.productName;
+	String[] productIntro = Intro.productIntro;
+	Scanner in = new Scanner(System.in);
+	String userString = "";
+	Search(){//검색용 class
+		System.out.println("검색 할 문장을 입력하세요");
+		userString = in.nextLine();
+		SearchIntro();
+	}
+	public void SearchIntro () {
+		for(int i = 0; i<productName.length;i++) {
+			if(productIntro[i].contains(userString)) {
+				System.out.println(productName[i]+" : "+productIntro[i]);
+			}
+		}
+	}
+}
+
+////////////////////////////class ViewAll : 전체보기 class
+
+package main;
+
+public class ViewAll {
+	String[] productName = Intro.productName;
+	String[] productIntro = Intro.productIntro;
+	ViewAll(){
+		for(int i = 0 ; i<productName.length; i++) {
+			
+		}
+//	}
+//	public String Star(int a) {
+//		for(int i = 0; i<5;i++) {
+//			
+//		}
+	}
+}
+
+
+
+
+
+
+
+
+ 

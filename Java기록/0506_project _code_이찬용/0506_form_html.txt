@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="kor">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/css/01.css">
+</head>
+
+<body>
+  <header>Human Puppy</header>
+  <nav>
+    <div id="horizontal-underline"></div>
+    <a href="#">소개</a>
+    <a href="#">애견인 attitude</a>
+    <a href="#">반려견보기</a>
+    <a href="#">입양신청</a>
+    <a href="#">관심반려견</a>
+    <a href="#">반려견검색</a>
+  </nav>
+
+  <div id="pet">
+    <form name="pet_form" action="#" method="post">
+        <fieldset>
+            <legend>입양_신청서</legend>
+            <br>
+            <div class="line">
+            <label for="ctname">이름:</label>
+            <input id="ctname" minlength="2" type="text" name="ctname" placeholder="필수입력입니다" required autofocus/><br>
+            <br>                
+            </div>
+            <div class="line" style="padding-top: 15px;">
+            <label for="ctphonNum">전화번호:</label>
+            <input id="ctphonNum" type="tel" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" maxlength="13" name="ctphonNum" placeholder="010-****-****" required/><br>
+            <br>
+            </div>
+            <div class="line" style="padding-top: 15px;">
+            <label for="add">주소:</label>
+            <input id="add" type="text" name="add"/><br>
+            <br>            
+            </div>
+
+            <div style="padding-top: 5px;">신청이유<br></div>            
+            <textarea maxlength="200" name="comment" cols="50" rows="25" placeholder="입양신청이유를 작성해주세요"></textarea>
+            <div>                
+                <input type="submit" value="저장">         
+            </div>
+        </fieldset>
+
+    </form>
+  </div>
+  <script src="/css/js/01.js"></script>
+</body>
+
+</html>
