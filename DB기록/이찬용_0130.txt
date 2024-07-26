@@ -1,0 +1,95 @@
+## 오후는 문제 해결 능력을 연습합니다.
+지금껏 알고 있는 지식 + 새로운 지식의 조합입니다.
+
+지금껏 알고 있는 지식으로 새로운 지식을 검색하여 찾아 내어 문제를 해결하는 능동적인 능력입니다. 
+
+
+-- 테이블구축 - 쿼리를 복사해서 테이블을 구축하세요.
+create table member1(
+m_no number constraint member_pk primary key,
+m_id varchar2(8) constraint member_unique unique,
+m_name varchar2(12),
+m_age number constraint member_m_age_chk check(m_age between 1 and 100),
+m_point number default 100,
+m_indate timestamp default sysdate);
+
+in
+-- basic
+1.  다음 고객을 등록하시오
+순번    아이디    이름     나이   포인트
+  1        aaa      홍길수     45    1000
+  2        bbb     일지수     40    100
+  3        ccc      남이지     18    975
+  4        ddd     박진수     30    776
+
+insert into member1 values(1, 'aaa', '홍길수', 45, 1000, default);
+insert into member1 values (2, 'bbb', '일지수', 40, 100, default);
+insert into member1 values (3, 'ccc', '남이지', 18, 975, default);
+insert into member1 values (4, 'ddd', '박진수', 30, 776, default);
+
+2. 모든 사람의 정보를 출력하시오
+
+select * from member1;
+
+3. 모든 사람의 정보를 출력하되, 아이디랑 이름만 출력하시오.
+
+select m_id, m_name from member1;
+
+--- upgrade1
+4. 나이가 40이상인 사람의 모든 정보(모든 컬럼의 정보)를 출력하시오.
+
+   select * from member1
+   2  where m_age >=40;
+
+5. 포인트가 900점 이상인 사람의 아이디와 이름, 포인트만 출력하시오.
+  
+  select m_id, m_point from member1
+  2  where m_point >= 900;
+
+6. 순번이 3인 사람의 모든 정보를 출력하시오.
+
+  select * from member1
+  2  where m_no = 3;
+
+7. 모든 사람의 나이를 1씩 증가하시오.
+   
+  select m_age+(1) from member1;
+
+8. 미성년자인 고객의 이름과, 나이를 출력하시오
+  
+  select m_name, m_age from member1
+  2  where m_age <= 19;
+
+9. 나이가 30이상인 사람의 포인트에 10포인트를 추가로 지급하시오
+   
+   select m_point+ (10) from member1
+   2  where m_age >= 30;
+
+10. 홍길수의 나이를 49로 변경하시오.
+  
+   update member1
+  2  set
+  3  m_age = 49
+  4  where m_name = '홍길수';
+
+11. 아이디가 ddd인 사람을 삭제 하시오.
+
+  delete
+  2  from member1
+  3  where m_id = 'ddd';
+  
+12. between을 사용하여 포인트가 700이상 1100이하인 사람의 정보를 모두 출력하시오.
+  
+  select * from member1
+  2  where m_point between 700 and 1100;
+
+-- upgrade2
+13.  다음과 같은 아이디가 입력되록 하시오 aaaaabbbbb
+14. 고객의 정보에 주소(한글5글자, 시만 입력)를 입력가능하도록 하시오.
+15. 나이정보를 저장하지 않으려고 한다 나이 컬럼을 삭제하시오.
+16.  5abcd     홍리자     30    1020   회원의 정보를 등록하시오. 단 등록일은
+     오늘 날짜에서 년만 1년 전으로 하시오. 오늘의 년도가 2024라면 2023, 오늘의 년도가 2023이라면 
+                                                           2022가 되어야 한다. 
+17. 고객의 점수를 등록하려고 한다. 점수는 0점부터 99.99까지 등록이 가능하다.
+     점수가 88.22 인 사람정보를 입력하시오 . 점수외의 정보는 임의로 지정하세요
+ 
