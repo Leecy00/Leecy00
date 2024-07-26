@@ -1,0 +1,153 @@
+** 다음 테이블과 백데이터를 등록하시오.
+create table member1(
+id number primary key,
+name varchar2(8),
+addr varchar2(13),
+m_id number,
+m_class varchar2(4),
+point number default 10 );
+
+설명:
+m_id는 자신의 매너지 id
+m_class 자신이 소속한 부서의 아이디
+
+insert into member1 values (1,'홍길동','천안시',2,'a',100);
+insert into member1 values (2,'고길두','수원시',2,'a', 200);
+insert into member1 values (3,'일지매','천안시',2,'a',default);
+insert into member1 values (4,'오지옹','오산시',1,'b',10000);
+insert into member1 values (7,'삼천포','청주시',1,'b',30);
+insert into member1 values (6,'우러크','천안시',3,'c',6000);
+insert into member1 values (5,'광어크','수원시',4,'c', 60);
+
+create table hmclass(
+m_class varchar2(4),
+m_name varchar2(14),
+m_floor varchar2(3));
+
+설명 : m_name은 부서이름입니다.
+m_floor은 부서의 위치입니다.
+
+insert into hmclass values ('a','개발부','01');
+insert into hmclass values ('b','영업부','02');
+insert into hmclass values ('c','운영부','01');
+insert into hmclass values ('d','홍보부','03');
+
+create table floorinfo(
+floornum varchar2(3),
+flooraddr varchar2(40));
+
+설명 : floornum은 부서의 위치입니다.
+foolraddr은 부서의 세부 주소입니다.
+
+insert into floorinfo values ('01','인계동 HM빌딩');
+insert into floorinfo values ('02','인계동 CM빌딩');
+insert into floorinfo values ('03','인계동 HM빌딩');
+
+모든 문제를 풀기전에 select절의 순서를 기억하고
+조인이 필요한가? 필요하다면 어떤 조인이 필요한가? 
+조인 후 where group by order by가 필요한가?
+기억하시길.
+
+
+1. 포인트가 1000 이상인 사람의 이름, 주소, 포인트를 출력하시오.
+select m.name, m.addr, m.point 
+from member1 m
+where point >= 1000
+;
+
+2. 모든 사람의 이름, 주소, 부서이름, 포인트를 출력하시오.
+select m.name, m.addr, h.m_name, m.point 
+from member1 m
+left outer join hmclass h
+on m.m_class = h.m_class
+;
+
+3. 포인트가 5000이상인 사람의 이름, 주소, 부서이름, 포인트를 출력하시오.
+select m.name, m.addr, m.m_class, m.point  
+from member1 m
+left outer join hmclass h
+on m.m_class = h.m_class
+where m.point >= 5000
+;
+
+*****4. 각 부서별 인원수를 출력하시오.
+select m_name, count(m_name) 
+from hmclass h
+inner join member1 m 
+on m.m_class = h.m_class
+group by m_name
+;
+
+5. 최고포인트는 몇 점입니까?
+select max(m.point)
+from member1 m
+;
+
+6. a부서와 c부서의 사람은 모두 몇명입니까?
+select *
+from member1;
+
+select * 
+from member1
+where m_class = 'a' or m_class = 'c';
+
+select count(*) 
+from member1
+where m_class = 'a' or m_class = 'c';
+
+7. 아무도 등록되지 않은 부서명을 출력하시오.
+select h.m_name 
+from hmclass h
+left outer join member1 m
+on m.m_class = h.m_class
+where m.m_id is null
+;
+
+9. 모든 사람의 이름, 주소, 부서이름, 포인트를 출력하되. 포인트가 1000이상이고, 포인트가 높은 순서대로 출력
+select m.name, m.addr, h.m_name, m.point 
+from member1 m
+inner join hmclass h
+on m.m_class = h.m_class
+where m.point >= 1000 
+order by point desc
+;
+
+10. 개발부에 속한 사람의 이름, 주소를 모두 출력하시오.
+select m.name, m.addr 
+from member1 m
+inner join hmclass h 
+on m.m_class = h.m_class
+where m_name = '개발부'
+;
+
+11. 모든 사람의 이름, 주소, 매니저이름을 출력하시오.
+select m.name, m.addr, m.m_id
+from member1 m 
+join member1 m2
+on m.id = m2.m_id
+;
+
+12. 그룹이름별로 몇명의 사람이 있는지 출력하시오.. 출력은 그룹이름, 인원수
+ 
+13. 천안시에 거주하는 사람의 이름, 주소,부서이름을 출력하시오.
+select m.name, m.addr, h.m_name 
+from member1 m 
+inner join hmclass h
+on m.m_class = h.m_class
+where addr = '천안시'
+;
+
+14. 개발부가 위치한 빌딩이름과 층의 정보를 출력하시오. 출력은 부서명, 빌딩이름, 층.
+select h.m_name, f.flooraddr, f.floornum
+from hmclass h
+inner join floorinfo f
+on h.m_floor = f.floornum
+;
+ 
+15. 부서에 배정된 사람의 이름과 주소를 출력하시오. 단 한명도 배정이 되지 않은 부서인 경우의 부서정보는 출력하고
+     출력이 null인 곳은 없음이라고 출력하시오.
+select h.m_name, decode(m.name,null,'없음',m.name) name,decode(m.addr,null,'없음',m.addr) addr
+from member1 m
+right outer join hmclass h
+on m.m_class = h.m_class
+;

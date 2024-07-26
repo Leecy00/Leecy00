@@ -1,0 +1,74 @@
+오전과제 제출
+create table am_mission(
+customer_num number primary key,
+id varchar2(8),
+customer_name varchar2(12),
+age number check (age between 1 and 100),
+point number default 100,
+yy_mm_dd timestamp default sysdate
+);
+
+-----------------  답안
+1 쿼리문 참고 답안 
+create table member(
+m_no number constraint member_pk primary key,
+m_id varchar2(8) constraint member_unique unique,
+m_name varchar2(12),
+m_age number constraint member_m_age_chk check(m_age between 1 and 150),
+m_point number default 100,
+m_indate timestamp default sysdate);
+
+-----------------  정리 학습
+2 다음 쿼리문의 성공과 실패를 구분하시오.
+insert into member values (10,'a12','hong',24,default,default);          성공
+insert into member values (10,'a12345678','hong',29,default,default); 실패: primary 키 조건에 위배된다.
+insert into member values (11,'a12345678','hong',29,default,default); 실패: m_id column의 속성에 할당한 값에 위배된다.  
+insert into member values (10,'a123','hong',99,150,default);            실패: primary 키 조건에 위배된다.
+insert into member values (13,'a123','park',102,1000,default);  실패: default 키 조건에 위배된다.
+insert into member values (14,'a1234','park','88',1000,default); 실패: default 키 조건에 위배된다.
+insert into member values (15,'a12','lee',88,1000,default);       실패: default 키 조건에 위배된다.
+insert into member values (16,'a1234','park',88,1000,default); 실패: default 키 조건에 위배된다. 
+
+
+
+3 서술식  
+작성방법 : 주어를 먼저 정의하고 서술하시오. 전공용어를 사용할 것. 효과적인이라는 단어를 사용할때는 효과적인 이라는
+단어를 설명해야 합니다.
+
+테이블이란 무엇인가?  : 행과열로 구성된 표로 테이블구조와 튜플로 이루어져 있다.
+
+튜플이란 무엇인가? : 속성명에 대한 자료이다.
+
+테이블의 구조를 정의할때, 속성명은 무엇인가? 튜플을 알수 있는 고유이름
+
+테이블의 구조를 정의할때, 속성이란 무엇인가? 속성값에 대한 데이터 유형 
+
+속성의 종류는 무엇이 있는가? : 문자형, 정수, 소수, 
+
+속성에서 문자열을 입력할때 양쪽 끝에 입력하는 기호는 무엇인가? 작은 따옴표로 감싼다.
+
+테이블을 생성하는 명령어는 무엇인가? create
+
+테이블을 삭제하는 명령어는 무엇인가? drop
+
+튜플을 삽입하는 명령어는 무엇인가? insert
+
+튜플을 검색하는 명령어는 무엇인가? select
+
+제약조건이란 무엇인가? : 속성에 제약하는 조건을 설정 하고 싶을때 제약조건을 사용한다.
+
+제약조건의 종류는 무엇인가? primary key, check key, not null key, defult, uniqne key
+
+기본키의 특징 2가지는 무엇인가? 고유성과 최소성 
+
+유니크의 의미는 무엇인가? 고유해야한다.
+
+varchar2(5)  괄호 안에 숫자의 의미는 무엇인가? 튜플의 입력값 할당 
+
+오라클에서 한글은 몇 바이트로 표현하는가? 3바이트
+
+오라클에서 영문과 숫자는 몇 바이트로 표현하는가? 
+
+무결성의 종류 3가지는 무엇인가? primary, uniqne, 
+
+constraint 키워드(명령어)가 의미하는 것은 무엇인가?

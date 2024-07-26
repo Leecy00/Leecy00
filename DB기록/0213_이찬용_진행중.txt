@@ -1,0 +1,64 @@
+-------------2번 부터 하면 됩니다.
+drop table users;
+drop table carinfo;
+
+create table users(
+id varchar2(8), 
+name varchar2(10), 
+addr varchar2(10));
+
+create table carinfo(
+c_num varchar2(4), 
+c_name varchar2(10),
+ id varchar2(8));
+
+insert into users values ('1111','kim','수원');
+insert into users values ('2222','lee','서울');
+insert into users values ('3333','park','대전');
+
+insert into carinfo values ('1234','중형','1111');
+insert into carinfo values ('3344','소형','1111');
+insert into carinfo values ('5566','중형','3333');
+
+--- 2번 : 여기서 부터 시작하세요..
+-- companycar 회사에서 구매한 자동차를 의미, carinfo는 직원에게 배정한 자동차
+create table companycar(   
+c_num varchar2(4),
+c_com varchar2(30),
+c_name varchar2(10),
+c_price number);
+
+insert into companycar values ('1234','현다이','소나타',1000);
+insert into companycar values ('3344','기와','축제',2000);
+insert into companycar values ('7788','기와','레2',800);
+insert into companycar values ('9900','현다이','그랭저',2100);
+
+1. 배정 자동차의 차번호, 제조사, 자동차명, 가격을 출력하시오.
+select c.c_num, c.c_com, c.c_name, c.c_price
+from companycar c inner join carinfo ca
+on c.c_num = ca.c_num;
+
+설명: companycar Table과 carinfo Table을 Inner join 하였다.
+조건은 배정 자동차이므로 companycar Table의 c_num컬럼과 carinfo Table의 c_num컬럼이 같은 자동차만 출력하게 하였다.
+출력 조건으로는 차번호, 제조사, 자동차명, 가격을 select절에 입력하였다. 
+
+
+2. 회사에서구매는 하였지만 배정되지 않은 자동차의 차번호, 제조자, 자동차 이름을 출력
+select c.c_num, c.c_com, c.c_name
+from companycar c
+left outer join carinfo car
+on c.c_num = car.c_num
+where car.c_num is null ; 
+
+설명: companycar Table과 carinfo Table을 left outer join 하였다.
+조건은 배정되지 않은 자동차이므로 carinfo Table의 c_num컬럼과 companycar Table의 c_num컬럼이 같은 자동차만 출력한다음
+where절에서 null값인 조건을 출력하였다. 
+출력조건으로는 자동차의 차번호, 제조사, 자동차이름을 select절에 입력하였다.
+
+궁금한점: left outer join을 통해 join에 참여하지 않은 튜플은 왜 null값인 것인지 ?
+
+3. 자동차 가격이 1000만원 이상인 자동차의 자동차 번호를 출력하시오.
+
+4. 배정된 자동차 중에 회사에서 구매한 자동차가 아닌 자동차 번호를 출력하시오.
+
+5. 모든 사람의 정보를 출력하시오. 이름, 배정받은 자동차번호, 자동차이름
