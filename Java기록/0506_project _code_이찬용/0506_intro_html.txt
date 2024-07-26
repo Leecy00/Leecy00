@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="kor">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>  
+  <link rel="stylesheet" href="/css/01.css">
+</head>
+<body>
+<header>Human Puppy</header>
+<nav>
+   <div id="horizontal-underline"></div>
+   <a href="#">소개</a>
+   <a href="#">애견인 attitude</a>
+   <a href="#">반려견보기</a>
+   <a href="#">입양신청</a>
+   <a href="#">관심반려견</a>
+   <a href="#">반려견검색</a>
+ </nav>
+ <section>
+    <div class="contents">
+        <span>
+           <div id="c1"><b>Human Puppy소개</b><br>
+                이 콘텐츠는 Human Puppy 소개와 비전을 설명합니다<br>
+                강아지와 함께 삶을 즐기는 모든 사람들을 위한 커뮤니티입니다.<br>
+                강아지 훈련,건강,영양,생활,환경 등 다양한 주제에  대한 팁과 정보를 제공합니다.<br>
+                또한 사용자들끼리 경험을 공유하고 함께 고민을 해결할 수 있습니다.<br>
+                <br>                                     
+           </div>        
+           <div id="c2"><b>Human Puppy교육은 다릅니다.</b><br>
+                Human Puppy교육은 한가지 문제행동의 개선만을 목적으로 하는 것이 아닌<br>
+                반려견의 더 나은 삶을 위한 총체적 접근을 윈칙으로 합니다.<br>
+                반려견의 마음을 알기 위해 그들의 언어를 공부하고<br>
+                칭찬과 거절을 병행하며 보듬어주는 교육을합니다.<br>
+                <br>                
+           </div>
+           <div id="c3"><b>Human Puppy의 노하우를 담았습니다.</b><br>
+                반려견의 언어인 카밍시그널부터 가장 기초가 되는 산책교육, 예절교육, 분리불안등<br>
+                다양한 토픽에 대한 노하우을 담았습니다<br>
+                자유롭게 언제 어디서나 단기교육이나 보호자와 분리된 교육이 아닌<br> 
+                보호자와 반려견이 항상 함께하며 교육하는 환경을 추구합니다.<br>                 
+                <br>
+           </div> 
+        </span>   
+    </div>
+    <img id="pug" src="/image/pug (2).png" alt="귀여운 pug">    
+ </section> 
+ <script src="/css/js/01.js"></script> 
+</body>
+
+</html>

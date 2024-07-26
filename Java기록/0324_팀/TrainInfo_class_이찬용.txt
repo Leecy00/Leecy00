@@ -1,0 +1,19 @@
+package j001;
+
+public class TrainInfo {
+	String trainType;
+	String trainName;
+	int trainNum;
+	int trainArr;
+	int realArr; 
+	
+	public void prt() {
+		System.out.print("열차이름:" + trainName+"  " );
+		System.out.print("열차종류:" + trainType+"  ");
+		System.out.print("열차번호:" + trainNum+"  ");
+		System.out.print("도착시간:" + trainArr+"  ");
+		System.out.print("실제도착시간:" + realArr+"  ");
+		System.out.print("지연시간:"+(realArr-trainArr));
+		System.out.println();
+	}
+}

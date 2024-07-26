@@ -1,0 +1,258 @@
+
+		char[][] board =new char[7][7];
+		for(int i=0; i<=6;i++) {
+			for(int j=0;j<=6;j++) {
+				if(i==0&&j==0) {
+					board[i][j]='┌';
+				}else if(i==6&&j==6) {
+					board[i][j]='┘';
+				}else if(i==6&&j==0) {
+					board[i][j]='└';
+				}else if(i==0&&j==6) {
+					board[i][j]='┐';
+				}else if(i==6&&j==4) {
+					board[i][j]='┴';
+				}else if(i==6&&j==2) {
+					board[i][j]='┴';
+				}else if(i==4&&j==6) {
+					board[i][j]='┤';
+				}else if(i==2&&j==6) {
+					board[i][j]='┤';
+				}else if(i==2&&j==0) {
+					board[i][j]='├';
+				}else if(i==4&&j==0) {
+					board[i][j]='├';
+				}else if(i==0&&j==4) {
+					board[i][j]='┬';
+				}else if(i==0&&j==2) {
+					board[i][j]='┬';
+				}else if(i==2&&j==2) {
+					board[i][j]='┼';
+				}else if(i==4&&j==2) {
+					board[i][j]='┼';
+				}else if(i==2&&j==4) {
+					board[i][j]='┼';
+				}else if(i==4&&j==4) {
+					board[i][j]='┼';
+				}else if(i%2!=0&&j==0) {
+					board[i][j]='│';
+				}else if(i%2!=0&&j==2) {
+					board[i][j]='│';
+				}else if(i%2!=0&&j==4) {
+					board[i][j]='│';
+				}else if(i%2!=0&&j==6) {
+					board[i][j]='│';
+				}else if(i%2==0&&j==1) {
+					board[i][j]='─';
+				}else if(i%2==0&&j==3) {
+					board[i][j]='─';
+				}else if(i%2==0&&j==5) {
+					board[i][j]='─';
+				}
+			}
+		}
+		char num=49;
+		for(int i=1; i<6; i+=2) {
+			for(int j=1; j<6; j+=2) {
+				board[i][j]=num;
+				num++;
+			}
+		}
+		
+	
+		String []quiz=new String[15];
+		String []answer=new String[15];//배열 선언
+		
+		quiz[0]="10원짜리 동전 앞 면에 새겨진 탑의 이름은?";
+		quiz[1]="10+20-15=?";
+		quiz[2]="인도의 수도는?";
+		quiz[3]="자바는 00지향 프로그래밍이다.";
+		quiz[4]="전구를 발명한 사람은?";
+		quiz[5]="고래 싸움에 ( ) 등 터진다."	;
+		quiz[6]="달과 지구의 거리가 가장 가까워질 때 볼 수 있는 크고 밝은 보름달을 가리키는 말은?";
+		quiz[7]="산소, 이산화탄소, 질소, 수소 중 가장 가벼운 기체는?";
+		quiz[8]="세상에서 가장 잘 깨지는 창문의 이름은 무엇일까요? ";
+		quiz[9]="스페인의 수도는?";
+		quiz[10]="22+2+2+2=?";
+		quiz[11]="2+4=?";	
+		quiz[12]="6x8=?";				
+		quiz[13]="9+9-9=?";			
+		quiz[14]="5555+5=?";			
+							
+		answer[0]="다보탑";
+		answer[1]="15";
+		answer[2]="뉴델리";
+		answer[3]="객체";
+		answer[4]="에디슨";
+		answer[5]="새우"	;
+		answer[6]="슈퍼문";
+		answer[7]="수소";
+		answer[8]="와장창";
+		answer[9]="마드리드";
+		answer[10]="28";
+		answer[11]="6";
+		answer[12]="48";
+		answer[13]="9";
+		answer[14]="5560";
+													
+		Random r= new Random();
+		String[]printquiz=new String[9];//문제 9개는 printquiz에서 가져옴
+		String[]printanswer=new String[9];
+		for(int i=0; i<printquiz.length; i++) {
+			int a=r.nextInt(quiz.length);//랜덤으로 뽑아서 변수 a에 저장
+			String randomquiz=quiz[a];
+			printquiz[i]=randomquiz;
+			printanswer[i]=answer[a];
+			for(int j=0; j<i; j++) {
+				if(printquiz[i]==printquiz[j]) {
+					i--;
+					break;
+				}
+			}
+		}///랜덤으로 뽑고 중복제거 해서 저장
+//		for(int i=0; i<printquiz.length; i++) {
+//			System.out.println(printquiz[i]);
+//			System.out.println(printanswer[i]);
+//			System.out.println("-------------------------------");
+//		}// test 중복제거---작동함
+		
+		
+		Scanner in =new Scanner(System.in);
+		System.out.println("빙고게임에 오신 것을 환영합니다!");
+		System.out.println("-----------------------------");
+		System.out.println("번호를 선택하고 문제의 정답을 맞추면 해당 번호를 획득합니다.");
+		System.out.println("빙고 3줄을 맞추면 게임이 종료됩니다.");
+		System.out.println("-----------------------------");
+///////////////////////////////////////////////////////////////////////////
+		for (int i = 0; i < board.length; i++) {
+			for (int j = 0; j < board[0].length; j++) {
+				System.out.print(board[i][j]);
+			}
+			System.out.println();
+		}///////////////보드판 출력
+		
+		int bingo=0;
+		int life = 10;
+		for(;;) {
+		System.out.println("1부터 9까지의 번호중 하나를 선택하세요");
+		System.out.println("-----------------------------");
+
+		int usernum=in.nextInt();
+		in.nextLine();
+		int []quiznum= {1,2,3,4,5,6,7,8,9};
+		
+			for(int i=0; i<quiznum.length; i++) {
+				if(usernum==quiznum[i]) {
+					System.out.println(printquiz[i]);
+				}	
+			}
+		String useranswer;
+		useranswer=in.nextLine();
+			for(int i=0; i<quiznum.length; i++)  {
+		
+				if(usernum==quiznum[i]) {///usernum이 1을 입력하면 quiznum[0]==1 서로비교
+					if(i<3) {
+						if(useranswer.equals(printanswer[i])){
+							System.out.println("정 답!");
+							board[1][2*i+1]='x';
+						}else {
+							System.out.println("오 답!");
+							life--;
+							System.out.println("남은기회는 : "+life);
+							//continue;
+						}
+					}else if(i>=3&&i<6) {
+						if(useranswer.equals(printanswer[i])){
+							System.out.println("정 답!");
+							board[3][2*usernum-7]='x';
+						}else {
+							System.out.println("오 답!");
+							life--;
+							System.out.println("남은기회는 : "+life);
+							//continue;
+						}
+					}else if(i>=6) {
+						if(useranswer.equals(printanswer[i])){
+							System.out.println("정 답!");
+							board[5][2*usernum-13]='x';
+						}else {
+							System.out.println("오 답");
+							life--;
+							System.out.println("남은기회는 : "+life);
+							//continue;
+						}
+					}
+				}
+			}
+			//빙고 판별기
+			int bcnt=0;
+			
+			for(int i=1;i<6;i+=2) {
+				for(int j=1; j<6 ;j+=2) {
+					if(board[i][j]=='x') {//가로
+						bcnt++;
+					}
+				}if(bcnt==3) {
+					bingo++;
+				}
+				bcnt=0;
+			
+				//세로
+				for(int j=1;j<6; j+=2) {
+					if(board[j][i]=='x') {
+						bcnt++;
+					}
+				}
+				if(bcnt==3) {
+					bingo++;
+				}
+				bcnt=0;
+			}
+			
+			for(int i=1; i<6; i+=2) {
+				for(int j=i; j<=i; j++) {
+					 if(board[i][j]=='x') {
+						 bcnt++;
+					}
+				}
+				if(bcnt==3) {
+					bingo++;
+				}
+			}//왼>오 대각선
+			bcnt=0;
+			
+			for(int i=1; i<6; i+=2) {
+				for(int j=6-i; j>=6-i; j--) {
+					 if(board[i][j]=='x') {
+						 bcnt++;
+					 }
+				}
+				if(bcnt==3) {
+					bingo++;
+				}
+			}//오<왼 대각선
+			bcnt=0;
+			
+			for (int i = 0; i < board.length; i++) {
+				for (int j = 0; j < board[0].length; j++) {
+					System.out.print(board[i][j]);
+				}
+				System.out.println();
+			}
+			
+			if(bingo==1) {
+				System.out.println("1 BINGO");
+				bingo=0;
+			}else if(bingo==2) {
+				System.out.println("2 BINGO");
+				bingo=0;
+			}else if(bingo>=3) {
+				System.out.println("3 BINGO");
+				System.out.println("★WIN★");
+				break;
+			}
+			if(life<1) {
+				System.out.println("기회는 끝!");
+				break;
+			}
+		}//무한반복 종료	

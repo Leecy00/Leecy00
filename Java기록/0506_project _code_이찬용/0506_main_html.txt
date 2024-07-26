@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="kor">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/css/01.css">
+</head>
+
+<body>
+  <header>Human Puppy</header>
+  <nav>
+    <div id="horizontal-underline"></div>
+    <a href="/0506_intro.html">소개</a>
+    <a href="/0506_attitude.html">애견인 attitude</a>
+    <a href="/0506_pet_adoption.html">반려견보기</a>
+    <a href="/0506_form.html">입양신청</a>
+    <a href="/0506_interest_pet.html">관심반려견</a>
+    <a href="/0506_search_pet.html">반려견검색</a>
+  </nav>
+  <section>
+    
+  </section>
+  <script src="/css/js/01.js"></script>
+</body>
+
+</html>

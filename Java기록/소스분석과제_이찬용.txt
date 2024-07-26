@@ -1,0 +1,78 @@
+풀이 확인 미션
+
+1. 각 클래스의 맴버변수와 메서드를 확인하시오.
+
+Main class: 프로그램 시작 class
+멤버변수: 없음 
+메서드: 1.main   2.FirstMenu (생성자/메서드호출) 프로그램 시작후 메뉴 출력 
+
+
+FirstMenu class: 아이디어공모 프로그램의 첫 메뉴 화면 class
+멤버변수: 1.Scanner in   2.ChMenu  3.ideaMain   4.chIdea 
+메서드: 1.FristMenu  2.menu
+
+
+IdeaMain class: 아이디어 공모할수있게 하는  class Ex) 등록, 수정, 전체보기
+멤버변수: 1.Scanner in  2.ideaList   3.choicIdea
+메서드: 1.menu  2.getIdeaList  3.add   4.mod  5.allList
+
+
+ChoiceIdea class: 아이디어를 채택할수 있게하는 class
+멤버변수: 1.Scanner in  2.choiceList  3.IdeaMain
+메서드: 1.ChoiceIdea  2.menu   3.ideaList   4.chkIdea  5.del  6.allList
+
+
+OneIdea class: 아이디어 공모양식 class
+멤버변수: 1.title   2.pass  3.wr
+메서드: 1.getTitle  2.getPass  3.getWr
+
+
+2. 시작클래스 이름은?
+    Main class의 메인메서드에서 시작한다.  
+
+
+3. FirstMenu객체는 어떤 클래스에서 만들고 총 몇개를 만드는가?
+   Main class에서 만들고 1개를 만들었다.
+
+
+4. FirstMenu 클래스의 맴버 변수를 분석하여
+   각 클래스 별로 객체를 몇개 반드는가? 몇개를 만들어야 하는가?
+   choiceMenu class 1개 
+   IdeaMain class 1개
+   choiceIdea class 1개
+   각기 다른클래스 간의 의존관계를 확인하여 필요시 주입하여 활용 
+
+
+5. 각 클래스 별 의존 관계를 분석하시오.
+  main class는 FirstMenu class를 의존하는 관계이다.
+  FirstMenu class는   1.ChoiceMenu class    2.IdeaMain class    3.ChoiceIdea class를 의존하는 관계이다.
+  ChoiceIdea class는  1.OneIdea를 의존하는 관계이다.   2.IdeaMain class 주소 값을 ChoiceIdea매서드로 전달받아 IdeaMain class를 사용함으로 의존하는 관계이다
+  IdeaMain class는 1.OneIdea를 의존하는 관계이다.    2.choiceIdea class 주소 값을 menu메서드로 전달받아 choiceIdea class를 사용함으로 의존하는 관계이다. 
+
+
+
+6. IdeaMain클래스와  ChoiceIdea클래스는 서로 의존한다.
+   의존한다는 것은 객체의 주소를 알아야 한다. 객체의 주소를 주입하는 것을 소스에서 찾아서 설명하세요.
+   
+   1. IdeaMain class에서 ChoiceIdea class 객체의 주소를 주입하는 코드이다. 
+   ChoiceIdea choicIdea = null;
+	public void menu(ChoiceIdea c) {
+		choicIdea=c;
+  choiceIdea class 주소 값을 menu메서드로 전달받아 choiceIdea class를 사용함으로 의존하는 관계이다.
+  
+  2. ChoiceIdea class에서  IdeaMain class 객체의 주소를 주입하는 코드이다.  
+  public class ChoiceIdea {
+	Scanner in = new Scanner(System.in);
+	OneIdea[] choiceList = new OneIdea[5];
+	IdeaMain ideaMain = null;
+	public ChoiceIdea(IdeaMain idea) {
+		ideaMain=idea;
+   IdeaMain class 주소 값을 ChoiceIdea매서드로 전달받아 IdeaMain class를 사용함으로 의존하는 관계이다
+
+
+7. ChoceIdea 클래스의 public boolean chkIdea(String t) 메서드를 분석하고 필요한 이유를 설명하시오.
+    chkIdea매서드 기능은 채택된 아이디어를 판별하는 기능이다.
+    매개변수로 문자열 자료형 t가 선언이되어 문자열을 받을수 있다. -> t는 채택된 아이디어의 제목
+    chkIdea 매서드 리턴 타입으로는 자료형이 boolean으로 true리턴하면 수정불가 false리턴하면 수정이 가능하다. 
+
+8. ChoiceIdea클래스의 public void ideaList()  메서드를 분석하시오.

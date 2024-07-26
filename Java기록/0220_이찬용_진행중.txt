@@ -1,0 +1,47 @@
+ 1.포인트를 저장하는 변수를 만들고 테스트 값으로 80을 입력한다. 포인트 값을 출력하시오.
+	  	int point ;
+		point = 80;
+		System.out.println(point); 
+		
+2.숫자 2개를 저장하는 변수를 만들고, 첫번째 변수는 10을 두번째 변수는 4를 입력하시오. 첫번째 변수를 두번째 변수로 나눈 몫을 구하시오. 몫은 소숫점도 나와야 합니다.
+	 	double a;
+		double b;
+		a = 10;
+		b = 4;
+		System.out.println(a/b); 
+	
+		int a;
+		int b;
+		a = 10;
+		b = 4;
+		System.out.println((double)a/b); 
+	
+3.이름을 저장하는 변수를 만들고 초기값은  null을 입력하시오. 홍길동이름을 변수에 저장하고 출력하시오. 출력할때는 이름뒤에 님이라고 붙히시오.
+	  	String name = "null";
+		System.out.println(name);
+		name = "홍길동";
+		System.out.println(name+"님"); 
+		
+4.영어점수 90, 수학점수 87, 컴퓨터점수 100 점을 저장하는 변수를 만들고 평균을 구하시오.점수는 정수만 입력이 되어야 하나 평균은 소숫점까지 나와야 합니다
+	  	int englishScore = 90;
+		int mathScore = 87;
+		int computerScore = 100;
+		System.out.println((double)englishScore+mathScore+computerScore/3);
+	
+5.평균을 저장하는 변수를 만들고 89.2라도 저장하시오. 평균이 80점 이상이면 합격, 80점 미만이면 불합격이라고 출력하시오. 
+	 double avg = 89.2;
+	 if(avg>=80) { 
+	System.out.println("합격");
+	 }  else {
+	System.out.println("불합격");
+	 }  
+
+6.int level=2;int point=30;level이 1이면 포인트에 30을 더하고level이 1이 아니면 포인트에 10을 더하시오 sysout을 한 번만 사용하여 최종 포인트를 출력하시오. 
+		int level =2;
+		int point =30;
+		if(level==1) 
+		 
+		
+7.int[] lotto = {6,12,33,4,5,26}로또 번호이다 3번째 값에 80을 더하시오
+	 	int[] lotto = {6,12,33,4,5,26};
+		System.out.println(lotto[2]+80); 

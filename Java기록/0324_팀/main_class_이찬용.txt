@@ -1,0 +1,11 @@
+package j001;
+
+public class Pstart {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		TrainEdit t = new TrainEdit ();
+		t.menu();
+	}
+
+}

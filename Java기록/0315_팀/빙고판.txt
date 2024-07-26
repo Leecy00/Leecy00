@@ -1,0 +1,61 @@
+		char[][] board =new char[7][7];
+		for(int i=0; i<=6;i++) {
+			for(int j=0;j<=6;j++) {
+				if(i==0&&j==0) {
+					board[i][j]='┌';
+				}else if(i==6&&j==6) {
+					board[i][j]='┘';
+				}else if(i==6&&j==0) {
+					board[i][j]='└';
+				}else if(i==0&&j==6) {
+					board[i][j]='┐';
+				}else if(i==6&&j==4) {
+					board[i][j]='┴';
+				}else if(i==6&&j==2) {
+					board[i][j]='┴';
+				}else if(i==4&&j==6) {
+					board[i][j]='┤';
+				}else if(i==2&&j==6) {
+					board[i][j]='┤';
+				}else if(i==2&&j==0) {
+					board[i][j]='├';
+				}else if(i==4&&j==0) {
+					board[i][j]='├';
+				}else if(i==0&&j==4) {
+					board[i][j]='┬';
+				}else if(i==0&&j==2) {
+					board[i][j]='┬';
+				}else if(i==2&&j==2) {
+					board[i][j]='┼';
+				}else if(i==4&&j==2) {
+					board[i][j]='┼';
+				}else if(i==2&&j==4) {
+					board[i][j]='┼';
+				}else if(i==4&&j==4) {
+					board[i][j]='┼';
+				}else if(i%2!=0&&j==0) {
+					board[i][j]='│';
+				}else if(i%2!=0&&j==2) {
+					board[i][j]='│';
+				}else if(i%2!=0&&j==4) {
+					board[i][j]='│';
+				}else if(i%2!=0&&j==6) {
+					board[i][j]='│';
+				}else if(i%2==0&&j==1) {
+					board[i][j]='─';
+				}else if(i%2==0&&j==3) {
+					board[i][j]='─';
+				}else if(i%2==0&&j==5) {
+					board[i][j]='─';
+				}else {
+					board[i][j]='0';
+				}
+				
+			}
+		}
+		for (int i = 0; i < board.length; i++) {
+			for (int j = 0; j < board[0].length; j++) {
+				System.out.print(board[i][j]);
+			}
+			System.out.println();
+		}

@@ -1,0 +1,256 @@
+///////////
+package main;
+
+public class Pstart {
+
+	public static void main(String[] args) {
+		Wordpad w = new Wordpad();
+		w.menu();
+	}
+
+}
+////////////////////
+package main;
+
+import java.util.Scanner;
+
+public class TrainInfo {
+	Scanner in = new Scanner(System.in);
+	int trainNum = 0;
+	String trainClass = null;
+	int trainArr = 0;
+	int trainLate = 0;
+}
+
+/////////////////////
+package main;
+
+import java.util.Scanner;
+
+public class TrainEdit {
+	TrainInfo[] train = new TrainInfo[4];
+	Scanner in = new Scanner(System.in);
+
+	public void menu() {
+		saveTrain(0, 1111, "무궁화", 0, 0);
+		saveTrain(1, 2222, "새마을", 0, 0);
+		saveTrain(2, 3333, "무궁화", 0, 0);
+		saveTrain(3, 4444, "새마을", 0, 0);
+		while (true) {
+			System.out.println("기차 정보 입력 : 1");
+			System.out.println("기차 정보 수정 : 2");
+			System.out.println("기차 정보 검색 : 3");
+			System.out.println("기차 정보 삭제 : 4");
+			System.out.println("전광판 출력 : 5");
+			int userInt = in.nextInt();
+			if (userInt == 1) {
+				insert();
+			} else if (userInt == 2) {
+				mod();
+
+			} else if (userInt == 3) {
+				search();
+
+			} else if (userInt == 4) {
+				delete();
+
+			} else if (userInt == 5) {
+				TrainList();
+			} else {
+				break;
+			}
+		}
+	}
+
+	private void saveTrain(int i, int num, String cls, int arr, int late) {
+		TrainInfo t = new TrainInfo();
+		train[i] = t;
+		t.trainNum = num;
+		t.trainClass = cls;
+		t.trainArr = arr;
+		t.trainLate = late;
+	}
+
+	private void insert() {
+		TrainList();
+		System.out.println("기차번호를 입력해주세요");
+		int userNum = in.nextInt();
+		in.nextLine();
+		System.out.println("도착 시간을 입력하세요");
+		int userArr = in.nextInt();
+		in.nextLine();
+		System.out.println("실제 도착 시간을 입력하세요");
+		int userLate = in.nextInt();
+		in.nextLine();
+		for (int i = 0; i < train.length; i++) {
+			if (train[i].trainNum == userNum) {
+				System.out.println("작동on");
+				saveTrain(i, train[i].trainNum, train[i].trainClass, userArr, userLate);
+			}
+		}
+	}
+
+	private void mod() {
+		TrainList();
+		System.out.println("기차번호를 입력해주세요");
+		int userNum = in.nextInt();
+		in.nextLine();
+		System.out.println("지연 시간을 입력하세요");
+		int userLate = in.nextInt();
+		in.nextLine();
+		for (int i = 0; i < train.length; i++) {
+			if (train[i].trainNum == userNum) {
+				System.out.println("작동on");
+				saveTrain(i, train[i].trainNum, train[i].trainClass, train[i].trainArr, userLate);
+			}
+		}
+		System.out.println("수정 완료");
+	}
+
+	private void search() {
+		searchBoard();
+		System.out.println("출발시간을 입력해주세요");
+		int userNum = in.nextInt();
+		in.nextLine();
+		for (int i = 0; i < train.length; i++) {
+			if (train[i].trainArr >= userNum) {
+				System.out.println("기차번호 :" + train[i].trainNum);
+				System.out.println("기차종류 :" + train[i].trainClass);
+				System.out.println("도착시간 :" + train[i].trainArr);
+				System.out.println("지연시간 :" + train[i].trainLate);
+				System.out.println("-------------------------");
+
+			}
+		}
+
+	}
+
+	private void delete() {
+		TrainList();
+		System.out.println("기차번호를 입력해주세요");
+		int userNum = in.nextInt();
+		in.nextLine();
+		System.out.println("도착 시간을 입력하세요");
+		int userLate = in.nextInt();
+		in.nextLine();
+		for (int i = 0; i < train.length; i++) {
+			if (train[i].trainNum == userNum && train[i].trainArr == userLate) {
+				saveTrain(i, 0, null, 0, 0);
+			}
+		}
+
+	}
+
+	private void TrainList() {
+		System.out.println("------------------------------------");
+		for (int i = 0; i < 5; i++) {
+			if (i == 0) {
+				System.out.print("기차번호 :");
+				for (int j = 0; j < train.length; j++) {
+					System.out.print("	" + train[j].trainNum);
+				}
+			} else if (i == 1) {
+				System.out.print("기차종류 :");
+				for (int j = 0; j < train.length; j++) {
+					System.out.print("	" + train[j].trainClass);
+				}
+			} else if (i == 2) {
+				System.out.print("도착시간 :");
+				for (int j = 0; j < train.length; j++) {
+					System.out.print("	");
+					if (train[j].trainArr < 1000) {
+						System.out.print("0");
+					}
+					System.out.print(train[j].trainArr);
+				}
+			} else if (i == 3) {
+				System.out.print("지연시간 :");
+				for (int j = 0; j < train.length; j++) {
+					System.out.print("	" + (train[j].trainLate - train[j].trainArr) + "분");
+				}
+			} else if (i == 4) {
+				System.out.print("지연여부 :");
+				for (int j = 0; j < train.length; j++) {
+					System.out.print("	");
+					if (train[j].trainArr < train[j].trainLate) {
+						System.out.print("[지연]");
+					}
+				}
+			}
+			System.out.println();
+		}
+		System.out.println("------------------------------------");
+	}
+
+	private void searchBoard() {// 새로운 변수 temp에 기차 도착 시간 순으로 버블정렬한다.
+		int[] temp = new int[train.length];
+		int t = 0;
+		for (int i = 0; i < train.length; i++) {// 저장되있는 배열을 출력을 위해 임시로 temp 배열에 trainArr복사.
+			temp[i] = train[i].trainArr;
+		}
+
+		for (int i = 0; i < temp.length - 1; i++) {// 버블정렬
+			if (temp[i] > temp[i + 1]) {
+				t = temp[i + 1];
+				temp[i + 1] = temp[i];
+				temp[i] = t;
+				t = 0;
+			}
+		}
+		System.out.println("------------------------------------");
+		for (int i = 0; i < 5; i++) {
+			if (i == 0) {
+				System.out.print("기차번호 :");
+				for(int j = 0; j<temp.length; j++) {
+					for(int k = 0; k<train.length; k++) {
+						if(temp[j] == train[k].trainArr) {
+							System.out.print("	" + train[k].trainNum);
+						}
+					}
+				}
+			} else if (i == 1) {
+				System.out.print("기차종류 :");
+				for(int j = 0; j<temp.length; j++) {
+					for(int k = 0; k<train.length; k++) {
+						if(temp[j] == train[k].trainArr) {
+							System.out.print("	" + train[k].trainClass);
+						}
+					}
+				}
+			} else if (i == 2) {
+				System.out.print("도착시간 :");
+				for(int j = 0; j<temp.length; j++) {
+					for(int k = 0; k<train.length; k++) {
+						if(temp[j] == train[k].trainArr) {
+							System.out.print("	" + train[k].trainArr);
+						}
+					}
+				}
+			} else if (i == 3) {
+				System.out.print("지연시간 :");
+				for(int j = 0; j<temp.length; j++) {
+					for(int k = 0; k<train.length; k++) {
+						if(temp[j] == train[k].trainArr) {
+							System.out.print("	" + (train[j].trainLate - train[j].trainArr) + "분");
+						}
+					}
+				}
+			} else if (i == 4) {
+				System.out.print("지연여부 :");
+				for(int j = 0; j<temp.length; j++) {
+					for(int k = 0; k<train.length; k++) {
+						if(temp[j] == train[k].trainArr) {
+							System.out.print("	");
+							if (train[j].trainArr < train[j].trainLate) {
+								System.out.print("[지연]");
+							}
+						}
+					}
+				}
+			}
+			System.out.println();
+		}
+		System.out.println("------------------------------------");
+
+	}
+}

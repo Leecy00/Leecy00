@@ -1,0 +1,89 @@
+1. 100부터 999까지의 숫자중에서 홀수만 출력하시오.
+	
+//		for(int i=100; i<=999; i++) {
+//		    if(i%2!=0) {
+//		      System.out.println(i);
+//		     }
+//		}
+	
+2. 1부터 100까지 숫자중에서 홀수의 총합을 구하시오.
+	
+//		int sum=0;
+//		for(int i=1; i<=100; i++) {
+//		     if(i%2!=0) {
+//			sum+=i;
+//		      }
+//		}System.out.println(sum);
+	
+3. 다음과 같이 출력하시오   10  9  8  7  6  5  4  3  2  1
+
+//		for(int i=10; i>=1; i--) {
+//		System.out.print(i);
+//		}
+	
+
+
+4. 범인 숫자 구하기.. 
+  범인은 100부터 999까지 숫자중에 여러명이다. 
+  범인의 특징은 숫자의 각자릿수를 더한 값이 짝수이다.  범인의 숫자를 모두 찾으시오.
+
+//		for(int i=100; i<=999; i++) {
+//			int a=(i/100)+(i%100/10)+(i%100%10);
+//			if(a%2==0) {
+//				System.out.println(i);
+//			}
+//		}
+
+5. 키보드로 숫자를 입력받아 홀짝인지 판별하시오.
+
+//		Scanner in = new Scanner(System.in);
+//		System.out.println("숫자를 입력하세요");
+//		int nowNum = in.nextInt();
+//		in.nextLine();
+//		if(nowNum%2==0) {
+//			System.out.println("짝입니다");
+//		}else {
+//			System.out.println("홀입니다");
+//		}
+
+6. 키보드로 숫자 2개를 입력받아 서로의 차를 구하는 프로그램을 작성하시오.
+
+//		Scanner in = new Scanner(System.in);
+//		System.out.println("숫자를 입력하세요");
+//		int nowNum = in.nextInt();
+//		in.nextLine();
+//		System.out.println("숫자를 입력하세요");
+//		int nowNum2 = in.nextInt();
+//		in.nextLine();
+//		System.out.println(nowNum-nowNum2+"은 두수의 차입니다");
+
+7. 키보드로 숫자를 입력받고 숫자의 자릿수에 4가 하나라도 있다면, 잘못된 숫자라고 판별하시오.
+
+
+
+
+
+8. 키보드로 입력받아 업다운 게임하기
+   sysout("게임을 시작합니다");
+   int com = 45;   // 컴퓨터는 45라고 기준 숫자를 미리 정의한다.
+   Scanner in = new Scanner(System.in);
+   int nowNum = in.nextInt();
+   sysout("1- 100사이의 숫자를 입력하세요 > ");
+
+  위 코드를 이용하여 게임을 완성하세요.
+
+9.  String test = "abcdeabce";
+    for(int i=0; i < 9; i ++){
+	char aaa = test.charAt(i);
+	sysout(aaa);
+    }
+
+   위 코드를 분석하여 a문자열에 a가 몇개 있는지 구하는 프로그램을 작성하세요
+
+
+10. 가장 긴 터널의 알파벳 이름과 숫자를 찾으세요
+ String ttt ="aabbbcccaaaaddbbbaaaaa";
+
+
+
+   
