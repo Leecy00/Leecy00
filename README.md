@@ -1,6 +1,6 @@
 <h1>Hello Leecy00 World 🌎</h1> 
 <h3>💪끈기있게 하면 안풀리는 문제는 없다💪</h3>
-저는web기반 Full Stack을 공부한 개발자입니다.👀 <br> <br>
+저는web기반 Full Stack을 공부중인 개발자입니다.👀 <br> <br>
 
 <h2>💻Tech Stack</h2>
 
