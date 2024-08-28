@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<link rel="stylesheet" type="text/css" th:href="@{css/barofarm.css}">
+<body>
+	<header>헤더공간</header>
+	<nav>네비바공간</nav>
+	<article>
+		<h3>마이페이지</h3>
+		<h5>000님 안녕하세요</h5>
+	</article>
+<aside>
+	<ul>
+	<li><a th:href="@{#}">나의 정보 조회</a></li>
+	<li>회원정보 수정</li>
+	<li>나의 쇼핑 정보</li>
+	<li>주문배송 조회</li>
+	<li>고객센터</li>
+	<li>공지사항</li>
+	</ul>
+</aside>
+</body>
+</html>
