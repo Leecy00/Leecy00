@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<link rel="stylesheet" type="text/css" th:href="@{css/barofarm.css}">
+<body>
+	<header>헤더공간</header>
+	<nav>네비바공간</nav>
+	<div id="insertView">
+		<div id="insertTitle">
+			<span>상품등록화면</span>
+		</div>
+		<div id="insertForm">
+			<form action="insert" name=meatinsert method="get">
+				<div id="insertCate">
+					<select name="product_cate">
+						<option value="">--대분류를 선택하세요--</option>
+						<option value="meat">축산물</option>
+						<option value="fish">수산물</option>
+						<option value="fruit">농산물</option>
+					</select>
+				</div>
+				<div id="insertMiddle">
+					<select name="product_middle">
+						<option value="">--중분류를 선택하세요--</option>
+						<option value="cow">소고기</option>
+						<option value="pig">돼지고기</option>
+						<option value="sheep">양고기</option>
+					</select>
+				</div>
+				<div>
+					<label for="product_name">상품명</label> <input type="text"
+						id="product_name" name="product_name">
+				</div>
+				<div>
+					<label for="product_price">가격</label> <input type="text"
+						id="product_price" name="product_price">
+				</div>
+				<div>
+					<label for="product_origin">원산지</label>
+					<!-- 자료형 int -->
+					<input type="text" id="product_origin" name="product_origin">
+				</div>
+				<div>
+					<label for="product_stock">재고</label>
+					<!-- 자료형 int -->
+					<input type="text" id="product_stock" name="product_stock">
+				</div>
+				<div><button type="submit">등록</button></div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
