@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="main.css">
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+<body>
+    
+    <!--제이쿼리 연습1-->
+    <h4 id='test'>제이쿼리 연습</h4>
+    <script>
+        $('#test').attr('class','yellow-bg');
+        
+        
+        
+        </script>
+
+<!--쌩 자바스크립트 기초1-->
+<div class="alert-box" id="alert">
+    <p id="title">왜 열어 다시 닫어</p>
+    <button id="close">X</button>
+</div>
+
+<button onclick="a1('ID 입력해라')">버튼1</button>
+<button onclick="a1('비번 입력해라')">버튼2</button>
+
+<script>
+    
+    //쌩 자바스크립트 기초 1
+    document.getElementById('close').addEventListener('click', function(){
+        document.getElementById('alert').style.display = 'none';
+    });
+    
+    function a1(text) {
+        document.getElementById('title').innerText = text; 
+        document.getElementById('alert').style.display = 'block';
+    }
+    
+    // function a2() {
+        //     document.getElementById('title').innerText = 'password를 입력하세요'; 
+        //     document.getElementById('alert').style.display = 'block';
+        // }
+        
+        </script>
+
+</body>
+</html>
