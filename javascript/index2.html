@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <ul id="navigation">
+        <li>에이치티엠엘</li>
+        <li>씨에스스</li>
+        <li>자바스크립트</li>
+        <li class="selected">제이쿼리</li>
+        <li>피에이취피</li>
+        <li>나의쿼리</li>
+    </ul>
+</body>
+<script>
+    $("#navigation li").on("click", function(){
+        $(".selected").css("border","2rem solid orange");
+    })
+</script>
+</html>
+
