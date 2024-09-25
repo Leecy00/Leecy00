@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn">버튼</button>
+    <p id="result"></p>
+
+    <ul id="myList">
+        <li>항목 1</li>
+        <li>항목 2</li>
+        <li>항목 3</li>
+    </ul>
+    <p id="result2"></p>
+
+    <button class="btn2">1번 버튼</button>
+    <button class="btn2">2번 버튼</button>
+    <button class="btn2">3번 버튼</button>
+    <p id="result3"></p>
+
+    <a href="https://www.naver.com/" id="Link">초록창으로 비빔 비빔 비빔</a>
+
+    <div id="outerDiv">
+        <div id="innerDiv">
+            <button id="btn3">버튼</button>
+        </div>
+    </div>
+    <p id="result4"></p>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</body>
+
+<script>
+/*이벤트 처리와 핸들링 구현예제*/
+$(function(){
+    $("#btn").on('click', function(){
+        $(this).text('버튼을 눌렀습니다');
+        $("#result").text('안녕하세요');
+    });
+});
+/*이벤트 제거 구현예제 1.함수정의 -> 2.이벤트 처리 연결 -> 3.이벤트 처리 제거 
+  의문점: 이벤트 처리를 해제하는 이유 
+  1. 성능 최적화 -> 이벤트가 불필요하게 계속 발생하면 시스템 자원을 낭비하게 된다. 
+  2. 특정 조건에서 이벤트 처리 중단 -> EX) 버튼이 눌린 후 더 이상 이벤트를 처리하지 않아야 하는 경우  
+*/
+$(document).ready(function(){
+    function handleClick(){
+        $(this).text("버튼을 눌렀습니다.");
+        $("#result").text("안녕하세요");
+    };
+ 
+    $("#btn").on("click", handleClick);
+
+    $("#btn").on("click", function(){
+        $("#btn").off("click", handleClick);
+        $("#result").text("이벤트 처리기가 제거되었습니다.");
+    });
+});
+
+/*이벤트 위임 구현예제 -> ID가 myList의 자식 li요소에 이벤트 위임이 발생하여 동적인 로직 구현*/
+$(function() {
+    $("#myList").on("click", "li", function(){
+        let clickedItem = $(this).text();
+        $("#result2").text("선택한 항목: "+clickedItem);
+    });
+});
+
+/*객체를 활용한 이벤트 처리 구현예제 -> event객체를 파라미터로 이벤트 객체를 참조
+  궁금한점: .html .Text 메서드 차이 -> Text메서드는 텍스트만 처리하고 html태그는 무시한다. 반면 html메서드는 html태그까지 처리한다.
+  html태그를 유지하거나 수정할 필요가 있을 때는 html메서드 사용 텍스트만 다룰 때는 text메서드 사용 
+*/
+$(function(){
+    $(".btn2").on("click", function(event) {
+        let clickedButton=$(this).text();
+        let buttonIndex=$(".btn").index(this);
+        let mouseX=event.pageX;
+        let mouseY=event.pageY;
+
+        let resultText = "클릭된버튼: " + clickedButton + "<br>";
+        resultText += "버튼 인덱스: " + buttonIndex + "<br>";
+        resultText += "마우스 좌표: (" + mouseX + "," + mouseY + ")";
+        
+        $("#result3").html(resultText);
+    });
+});
+
+/*html태그의 기본 동작을 차단하는 구현예제
+ 어느때 사용될까?
+*/
+$(function(){
+    $("#Link").on("click", function(event){
+        event.preventDefault();
+        alert("링크 클릭 이벤트가 발생되었습니다. event객체 preventDefault함수가 작동되어 a태그의 기본동작이 차단되었습니다.");
+    });
+});
+/*이벤트 버블링을 활용하여 이벤트 위임 구현예제 
+  outerDiv는 작동이 되는데 innerDiv가 작동이 되지 않는다. 어디를 눌러야 이벤트 헨들링이 되는지 모르겠다. 개발자도구를 이용하여 눌러보아도 innerDiv는 작동하지 않는다...
+  ui와ux의 중요성을 알게되었다. 
+  동작에 에러가 나니 이벤트 버블링을 활용한 이벤트 위임을 확인하지 못함..
+  중요한 기능같은데  
+*/
+$(function(){
+    $("#outerDiv").on("click",function(){
+        $("#result4").text("outerDiv가 클릭되었습니다");
+    });
+
+    $("#innerDiv").on("click",function(){
+        $("#result4").text("innerDiv가 클릭되었습니다");
+    });
+
+    $("#btn3").on("click",function(event){
+        event.stopPropagation();
+        $("#ressul4").text("버튼이클릭되었습니다.");
+    });
+
+});
+</script>
+
+</html>
