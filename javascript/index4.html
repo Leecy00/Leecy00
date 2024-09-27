@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery문법으로 애니메이션 효과 구현예제</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <button id="myButton">클릭</button>
+    <div id="myDiv">애니메이션 효과 예제</div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</body>
+<script>
+    $(document).ready(function () {
+        $("#myButton").on("click", function () {
+            $("#myDiv").fadeOut(500, function () {
+                $(this).slideUp(500);
+            });
+        });
+    });
+
+</script>
+
+</html>

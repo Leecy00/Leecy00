@@ -21,3 +21,9 @@
     visibility: visible;
     opacity: 1;
 }
+#myDiv{
+    width: 200px;
+    height: 200px;
+    background-color: #f2f2f2;
+    margin-top: 20px;
+}
