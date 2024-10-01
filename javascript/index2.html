@@ -35,9 +35,48 @@
     <button id="test-btn">버튼</button>
     
 
+    <p>태조 이성계가 태어난 년도는?</p>
+    <input type="text" id="answer">
+    <button id="send-answer">제출</button>
+
+    <form action="success.html">
+        <div class="my-3">
+          <input type="text" class="form-control" id="email">
+         </div>
+         <div class="my-3">
+           <input type="password" class="form-control">
+         </div>
+         <button type="submit" class="btn btn-primary" id="send">전송</button>
+         <button type="button" class="btn btn-danger" id="close">닫기</button>
+    </form> 
+
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </body>
+
 <script>
+    $('form').on('submit',function(e){
+        let 비번 =$('.form-control').val()
+        if(/[A-Z]/.test(비번) == false){
+            alert('대문자써라');
+        }
+    });
+
+
+
+
+    let count = 0;
+    $(function(){
+        $("#send-answer").on("click", function(){
+            if($("#answer").val()==1335){
+                alert("정답");
+            }else{
+                alert("오답");
+            }
+        });
+
+    });
+
+
         $('.navbar-toggler').on('click',function(){
             $('.list-group').toggleClass('show');
         })
@@ -45,6 +84,23 @@
         $('#test-btn').on('click',function(){
             $('.hello').slideUp();
         })
+
+        // 예금금액에 따라 이율이 달라지는 코드
+        let 첫예금액=10000;
+        let 미래예금액;
+        let 이율;
+
+        if( 첫예금액 >= 50000){
+            미래예금액 = 첫예금액 * 1.2 * 1.2;
+        } else {
+            미래예금액 = 첫예금액 * 1.15 * 1.15;
+        }
+        console.log(Math.round(미래예금액));
+
+
+        // 주문한 커피 양에 따라서 최대한 마실 수 있는 커피를 콘솔창에 계산해주는 코드 작성
+        let first = 360;
+        first
 </script>
 </html>
 
