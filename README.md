@@ -1,6 +1,6 @@
 <h1>Hello Leecy00 World 🌎</h1> 
 
-개발을 개발중인 쥬니어 Leecy.👀 <br> <br>
+개발 주니어 Leecy.👀 <br> <br>
 javascript 공부 중 
 <h2>💻Tech Stack</h2>
 
